@@ -36,19 +36,78 @@
 # [print(x) for x in ss]
 
 # 4
-text = input()
+# text = input()
+#
+# dd = {}
+#
+# for i in text:
+#     if i not in dd.keys():
+#         dd[i] = 0
+#     dd[i] += 1
+#
+# for key, value in sorted(dd.items()):
+#     print(f"{key}: {value} time/s")
 
-dd = {}
+# 5
+# n = int(input())
+# longest_intersection = set()
+#
+# for i in range(n):
+#     first_range, second_range = input().split('-')
+#
+#     first_start, first_end = [int(x) for x in first_range.split(',')]
+#     second_start, second_end = [int(x) for x in second_range.split(',')]
+#
+#     first_set = set(range(first_start, first_end + 1))
+#     second_set = set(range(second_start, second_end + 1))
+#
+#     current_intersection = first_set.intersection(second_set)
+#
+#     if len(current_intersection) > len(longest_intersection):
+#         longest_intersection = current_intersection
+#
+# print(f"Longest intersection is {sorted(list(longest_intersection))} "
+#       f"with length {len(longest_intersection)}")
 
-for i in text:
-    if i not in dd.keys():
-        dd[i] = 0
-    dd[i] += 1
+# 6
+n = int(input())
+odd_set = set()
+even_set = set()
 
-for key, value in sorted(dd.items()):
-    print(f"{key}: {value} time/s")
+for i in range(1, n + 1):
+    current_name = input()
+    current_sum = 0
+    for j in current_name:
+        current_sum += ord(j)
+    current_sum = int(current_sum / i)
 
-# 5 -1:19:34
+    if current_sum % 2 != 0:
+        odd_set.add(current_sum)
+    else:
+        even_set.add(current_sum)
+
+sum1 = sum(odd_set)
+sum2 = sum(even_set)
+
+if sum1 == sum2:
+    current_union = odd_set.union(even_set)
+    print(f"{', '.join(map(str, current_union))}")
+
+elif sum1 > sum2:
+    current_difference = odd_set.difference(even_set)
+    print(f"{', '.join(map(str, current_difference))}")
+else:
+    current_difference = odd_set.symmetric_difference(even_set)
+    print(f"{', '.join(map(str, current_difference))}")
+
+
+
+
+
+
+
+
+
 
 
 

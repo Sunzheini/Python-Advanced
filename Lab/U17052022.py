@@ -206,6 +206,40 @@
 #     if not job_started:
 #         waiting_list.append(current_product)
 
+# 8
+from collections import deque
+
+duration_green_light = int(input())
+duration_free_window = int(input())
+car_queue = deque()
+cars_counter = 0
+crashed = False
+
+while not crashed:
+    command = input()
+    if command == "END":
+        break
+
+    if command == "green":
+        green_left = duration_green_light
+        while car_queue and green_left > 0:
+            current_car = car_queue.popleft()
+
+            if len(current_car) <= green_left + duration_free_window:
+                cars_counter += 1
+            else:
+                print(f"A crash happened!")
+                print(f"{current_car} was hit at {current_car[green_left - duration_free_window]}.")
+                crashed = True
+                break
+            green_left -= len(current_car)
+
+    else:
+        car_queue.append(command)
+
+if not crashed:
+    print(f"Everyone is safe.")
+    print(f"{cars_counter} total cars passed the crossroads.")
 
 
 
