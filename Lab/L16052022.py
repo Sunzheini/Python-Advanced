@@ -1,3 +1,4 @@
+# Lists as Stacks and Queues
 
 #tova sa stukturi ot danni
 #stack: lifo
