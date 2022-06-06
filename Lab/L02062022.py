@@ -158,10 +158,10 @@
 # ----------------------------------------------------------
 # except bez nishto - prihvashta vsqkakvi no ne dava info
 
-try:
-    pass
-except:
-    print("Exception")
+# try:
+#     pass
+# except:
+#     print("Exception")
 
 
 
