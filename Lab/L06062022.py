@@ -214,25 +214,25 @@
 #-------------------------------------------------------------
 
 # 5
-import re
-
-
-def read_words():
-    with open('./demo.txt') as file:
-        return file.read().split()
-
-
-def count_words_in_file(words):
-    words_counts = {word: 0 for word in words}
-    with open('./demo.txt') as file:
-        for line in file:
-            words_in_line = re.findall(r'\b\S+\b', line)
-            for word in words:
-                words_in_line[word] += words_in_line.count(word)
-    return words_counts
-
-
-print(count_words_in_file(read_words()))
+# import re
+#
+#
+# def read_words():
+#     with open('./demo.txt') as file:
+#         return file.read().split()
+#
+#
+# def count_words_in_file(words):
+#     words_counts = {word: 0 for word in words}
+#     with open('./demo.txt') as file:
+#         for line in file:
+#             words_in_line = re.findall(r'\b\S+\b', line)
+#             for word in words:
+#                 words_in_line[word] += words_in_line.count(word)
+#     return words_counts
+#
+#
+# print(count_words_in_file(read_words()))
 
 
 
