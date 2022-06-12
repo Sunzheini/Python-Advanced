@@ -1,6 +1,5 @@
 # Tuples and Sets
 
-
 # Tuples: immutable but objects inside are mutable
 # tt = (1, 2, 3, 4)
 # print(tt)
