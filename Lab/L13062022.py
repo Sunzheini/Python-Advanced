@@ -34,11 +34,11 @@
 
 # ----------------------------------------------------
 
-from math import log
-
-value = 10
-base = 10
-print(log(value, base))
+# from math import log
+#
+# value = 10
+# base = 10
+# print(log(value, base))
 
 # ----------------------------------------------------
 # pip - package manager
@@ -56,7 +56,41 @@ print(log(value, base))
 #venv
 
 # ----------------------------------------------------
-# 8.35h -52.55
+
+# 1
+# from pyfiglet import figlet_format
+# from termcolor import colored
+#
+# print(figlet_format("Daniel", font="isometric1"))
+# print(colored("Daniel", 'green', attrs=['underline']))
+
+# ----------------------------------------------------
+#custom modules
+
+
+# packet - 1 file or a folder
+# trqbva vytre fail __init__.py
+
+from triangle import print_triangle     # dostypvame v __init__ chrez imeto na direktoriqta
+from triangle.line import print_line    # za razlichni ot __ini__
+
+print_triangle()
+print_line()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
