@@ -19,7 +19,7 @@ def get_player_move(player):
     return player_move - 1
 
 
-def apply_player_move_gen(max_row, columns_count):
+def apply_player_move_gen(max_row, columns_count, player):
     free_bottom_row_indices = [max_row] * columns_count
 
     def apply_player_move_internal(field, player_move):
