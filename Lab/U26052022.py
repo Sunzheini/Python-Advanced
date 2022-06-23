@@ -138,40 +138,110 @@
 #         print(*row, sep=' ')            # moje i taka
 
 # 7
-rows, cols = [int(x) for x in input().split()]
-word = input()
-
-index = 0
-
-for row in range(rows):
-    elements = [None] * cols                # !!!
-
-    if row % 2 == 0:
-        for col in range(cols):
-            elements[col] = word[index % len(word)]     # 5 % 7 = 5, 7 % 7 = 0, 10 % 7 = 3
-            index += 1
-
-    else:
-        for col in range(cols-1, -1, -1):
-            elements[col] = word[index % len(word)]
-            index += 1
-
-    print(''.join(elements))
+# rows, cols = [int(x) for x in input().split()]
+# word = input()
+#
+# index = 0
+#
+# for row in range(rows):
+#     elements = [None] * cols                # !!!
+#
+#     if row % 2 == 0:
+#         for col in range(cols):
+#             elements[col] = word[index % len(word)]     # 5 % 7 = 5, 7 % 7 = 0, 10 % 7 = 3
+#             index += 1
+#
+#     else:
+#         for col in range(cols-1, -1, -1):
+#             elements[col] = word[index % len(word)]
+#             index += 1
+#
+#     print(''.join(elements))
 
 # 8 -1.25.21
 
 
+# 10. Radioactive Mutant Vampire Bunnies
+def find_coords(symbol):
+    for p in range(n):
+        for q in range(m):
+            if lair[p][q] == symbol:
+                return p, q
 
 
+def out_of_bounds(p_row, p_col):         # if oob player wins
+    if p_row > n - 1:
+        return True
+    if p_row < 0:
+        return True
+    if p_col > m - 1:
+        return True
+    if p_col < 0:
+        return True
 
 
+def rabit_multiplier(matrix, m_rows, m_cols):
+    bunnies_coords = []
+
+    for i in range(n):
+        for j in range(m):
+            if matrix[i][j] == 'B':
+                bunnies_coords.append((i, j))
+
+    for b_row, b_col in bunnies_coords:
+        if 0 <= (b_row - 1) < m_rows:
+            matrix[b_row - 1][b_col] = 'B'
+        if 0 <= (b_row + 1) < m_rows:
+            matrix[b_row + 1][b_col] = 'B'
+        if 0 <= (b_col - 1) < m_cols:
+            matrix[b_row][b_col - 1] = 'B'
+        if 0 <= (b_col + 1) < m_cols:
+            matrix[b_row][b_col + 1] = 'B'
 
 
+n, m = [int(x) for x in input().split(' ')]
+lair = [(list(input())) for x in range(n)]
 
+player_row, player_col = find_coords('P')
+lair[player_row][player_col] = '.'          # clear 'P' before first move
 
+win_condition = False
+dead_condition = False
 
+directions = {
+    'R': lambda r, c: (r, c + 1),
+    'L': lambda r, c: (r, c - 1),
+    'U': lambda r, c: (r - 1, c),
+    'D': lambda r, c: (r + 1, c),
+}
 
+commands = input()
+for command in commands:
+    last_row, last_col = player_row, player_col
+    player_row, player_col = directions[command](player_row, player_col)
 
+    if out_of_bounds(player_row, player_col):
+        win_condition = True
+        rabit_multiplier(lair, n, m)
+        player_row, player_col = last_row, last_col
+        break
 
+    if lair[player_row][player_col] == 'B':
+        dead_condition = True
+        rabit_multiplier(lair, n, m)
+        break
 
+    rabit_multiplier(lair, n, m)
+
+    if lair[player_row][player_col] == 'B':
+        dead_condition = True
+        break
+
+for el in lair:
+    print(''.join(el))
+
+if win_condition:
+    print(f"won: {player_row} {player_col}")
+if dead_condition:
+    print(f"dead: {player_row} {player_col}")
 
