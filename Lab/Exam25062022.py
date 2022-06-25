@@ -126,7 +126,7 @@ def shopping_cart(*args):
 
                     result += f"{p}:\n"
                     for j in q:
-                        result += f"- {j}\n"
+                        result += f" - {j}\n"
 
                 return result.strip()
 
